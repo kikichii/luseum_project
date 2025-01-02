@@ -28,7 +28,7 @@ class Snake:
             self.snake_pos[0] += 10
         self.snake_body.insert(0, list(self.snake_pos))
         for pos in self.snake_body:
-            pygame.draw.rect(game_window, green,
+            pygame.draw.rect(game_window, pink,
                              pygame.Rect(pos[0], pos[1], 10, 10))
         pygame.draw.rect(game_window, white, pygame.Rect(
             fruit.getpos()[0], fruit.getpos()[1], 10, 10))
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     black = pygame.Color(0, 0, 0)
     white = pygame.Color(255, 255, 255)
     red = pygame.Color(255, 0, 0)
-    green = pygame.Color(0, 255, 0)
+    pink = pygame.Color(255, 80, 155)
     blue = pygame.Color(0, 0, 255)
     pygame.display.set_caption('Snake')
     game_window = pygame.display.set_mode((window_x, window_y))
