@@ -5,11 +5,11 @@ import random
 
 class Snake:
     def __init__(self):
-        self.snake_pos = [100, 50]
-        self.snake_body = [[100, 50],
-                      [90, 50],
-                      [80, 50],
-                      [70, 50]]
+        self.snake_pos = [250, 100]
+        self.snake_body = [[250, 100],
+                      [200, 100],
+                      [150, 100],
+                      [100, 100]]
 
     def pos(self):
         return self.snake_pos
@@ -19,39 +19,25 @@ class Snake:
 
     def render(self, direction):
         if direction == 'UP':
-            self.snake_pos[1] -= 10
+            self.snake_pos[1] -= 50
         if direction == 'DOWN':
-            self.snake_pos[1] += 10
+            self.snake_pos[1] += 50
         if direction == 'LEFT':
-            self.snake_pos[0] -= 10
+            self.snake_pos[0] -= 50
         if direction == 'RIGHT':
-            self.snake_pos[0] += 10
+            self.snake_pos[0] += 50
         self.snake_body.insert(0, list(self.snake_pos))
         for pos in self.snake_body:
             pygame.draw.rect(game_window, pink,
-                             pygame.Rect(pos[0], pos[1], 10, 10))
-        pygame.draw.rect(game_window, white, pygame.Rect(
-            fruit.getpos()[0], fruit.getpos()[1], 10, 10))
-        # Game Over conditions
-        if self.snake_pos[0] < 0 or self.snake_pos[0] > window_x - 10:
-            game_window.fill((0, 0, 0))
-            game_over()
-        if self.snake_pos[1] < 0 or self.snake_pos[1] > window_y - 10:
-            game_window.fill((0, 0, 0))
-            game_over()
-        # Touching the snake body
-        for block in self.snake_body[1:]:
-            if self.snake_pos[0] == block[0] and self.snake_pos[1] == block[1]:
-                game_window.fill((0, 0, 0))
-                game_over()
+                             pygame.Rect(pos[0], pos[1], 50, 50))
 
 
 
 class Fruit:
     def __init__(self, fruit_spawn):
         self.fruit_spawn = fruit_spawn
-        self.fruit_pos = [random.randrange(1, (window_x // 10)) * 10,
-                          random.randrange(1, (window_y // 10)) * 10]
+        self.fruit_pos = [random.randrange(100, window_x - 150, 50),
+                          random.randrange(100, window_y - 150, 50)]
 
     def isspawn(self):
         if self.fruit_spawn:
@@ -67,6 +53,23 @@ class Fruit:
 
     def setpos(self, x, y):
         self.fruit_pos = [x, y]
+
+    def render(self):
+        pygame.draw.rect(game_window, red, pygame.Rect(
+            fruit.getpos()[0], fruit.getpos()[1], 50, 50))
+
+class Level1:
+    def __init__(self):
+        self.active = False
+
+    def isactive(self):
+        return self.active
+
+    def active(self, tf):
+        self.active = tf
+
+    def render(self):
+        pass
 
 
 def show_score(choice, color, font, size):
@@ -84,11 +87,11 @@ def show_score(choice, color, font, size):
 
 def game_over():
     # creating font object my_font
-    my_font = pygame.font.SysFont('times new roman', 50)
+    my_font = pygame.font.SysFont('Corbel', 50)
     # creating a text surface on which text
     # will be drawn
     game_over_surface = my_font.render(
-        'Your Score is : ' + str(score), True, red)
+        'Apples:' + str(score), True, white)
     # create a rectangular object for the text
     # surface object
     game_over_rect = game_over_surface.get_rect()
@@ -107,12 +110,10 @@ def game_over():
 
 if __name__ == '__main__':
     pygame.init()
-    size = window_x, window_y = 700, 480
-    black = pygame.Color(0, 0, 0)
+    size = window_x, window_y = 850, 850
     white = pygame.Color(255, 255, 255)
     red = pygame.Color(255, 0, 0)
     pink = pygame.Color(255, 80, 155)
-    blue = pygame.Color(0, 0, 255)
     pygame.display.set_caption('Snake')
     game_window = pygame.display.set_mode((window_x, window_y))
     fps = pygame.time.Clock()
@@ -141,29 +142,24 @@ if __name__ == '__main__':
         if change_to == 'RIGHT' and direction != 'LEFT':
             direction = 'RIGHT'
         if snake.pos()[0] == fruit.getpos()[0] and snake.pos()[1] == fruit.getpos()[1]:
-            score += 10
+            score += 1
             fruit.spawn(False)
         else:
             snake.body().pop()
-
         if not fruit.isspawn():
-            fruit.setpos(random.randrange(1, (window_x // 10)) * 10,
-                          random.randrange(1, (window_y // 10)) * 10)
-
+            fruit.setpos(random.randrange(100, window_x - 100, 50),
+                          random.randrange(100, window_y - 100, 50))
         fruit.spawn(True)
-        game_window.fill((0, 0, 0))
+        game_window.fill((15, 220, 30))
+        pygame.draw.rect(game_window, pygame.Color(10, 150, 20), pygame.Rect(100, 100, window_x - 200, window_y - 200))
         snake.render(direction)
-        if snake.pos()[0] < 0 or snake.pos()[0] > window_x - 10:
+        fruit.render()
+        if snake.pos()[0] < 100 or snake.pos()[0] > window_x - 150:
             game_over()
-        if snake.pos()[1] < 0 or snake.pos()[1] > window_y - 10:
+        if snake.pos()[1] < 100 or snake.pos()[1] > window_y - 150:
             game_over()
-        # Touching the snake body
         for block in snake.body()[1:]:
             if snake.pos()[0] == block[0] and snake.pos()[1] == block[1]:
                 game_over()
-    # displaying score continuously
-        show_score(1, white, 'times new roman', 20)
-    # Refresh game screen
         pygame.display.update()
-    # Frame Per Second /Refresh Rate
-        fps.tick(15)
+        fps.tick(7)
