@@ -125,7 +125,7 @@ if __name__ == '__main__':
     white = pygame.Color(255, 255, 255)
     red = pygame.Color(255, 0, 0)
     pink = pygame.Color(255, 80, 155)
-     orange = pygame.Color(255, 135, 57)
+    orange = pygame.Color(255, 135, 57)
     pygame.display.set_caption('Snake')
     game_window = pygame.display.set_mode((window_x, window_y))
     fps = pygame.time.Clock()
