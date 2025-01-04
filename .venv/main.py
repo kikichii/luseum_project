@@ -1,6 +1,8 @@
 import pygame
 import time
 import random
+import os
+import sys
 
 
 class Snake:
@@ -32,7 +34,6 @@ class Snake:
                              pygame.Rect(pos[0], pos[1], 50, 50))
 
 
-
 class Fruit:
     def __init__(self, fruit_spawn):
         self.fruit_spawn = fruit_spawn
@@ -57,6 +58,7 @@ class Fruit:
     def render(self):
         pygame.draw.rect(game_window, red, pygame.Rect(
             fruit.getpos()[0], fruit.getpos()[1], 50, 50))
+
 
 class Level1:
     def __init__(self):
