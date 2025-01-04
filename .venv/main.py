@@ -72,6 +72,15 @@ class Level1:
         pass
 
 
+def load_image(name, colorkey=None):
+    fullname = os.path.join('data', name)
+    if not os.path.isfile(fullname):
+        print(f"Файл с изображением '{fullname}' не найден")
+        sys.exit()
+    image = pygame.image.load(fullname)
+    return image
+
+
 def show_score(choice, color, font, size):
     # creating font object score_font
     score_font = pygame.font.SysFont(font, size)
@@ -114,11 +123,17 @@ if __name__ == '__main__':
     white = pygame.Color(255, 255, 255)
     red = pygame.Color(255, 0, 0)
     pink = pygame.Color(255, 80, 155)
+     orange = pygame.Color(255, 135, 57)
     pygame.display.set_caption('Snake')
     game_window = pygame.display.set_mode((window_x, window_y))
     fps = pygame.time.Clock()
     snake = Snake()
     fruit = Fruit(True)
+    all_sprites = pygame.sprite.Group()
+    cur = pygame.sprite.Sprite(all_sprites)
+    cur.image = load_image("background_image.png")
+    cur.rect = cur.image.get_rect()
+    cur.rect.topleft = 100, 100
     direction = 'RIGHT'
     change_to = direction
     score = 0
@@ -151,7 +166,7 @@ if __name__ == '__main__':
                           random.randrange(100, window_y - 100, 50))
         fruit.spawn(True)
         game_window.fill((15, 220, 30))
-        pygame.draw.rect(game_window, pygame.Color(10, 150, 20), pygame.Rect(100, 100, window_x - 200, window_y - 200))
+        all_sprites.draw(game_window)
         snake.render(direction)
         fruit.render()
         if snake.pos()[0] < 100 or snake.pos()[0] > window_x - 150:
