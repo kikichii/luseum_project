@@ -93,6 +93,62 @@ class Level2:
         pygame.draw.rect(game_window, purple,
                          pygame.Rect(695, 545, 10, 305))
 
+
+
+class Level3:
+
+    def __init__(self):
+        self.flag = False
+
+    def checkcol(self, body):
+        if 100 <= body[0][0] < 250 and 100 <= body[0][1] < 250:
+            return True
+        if 250 <= body[0][0] < 400 and 200 <= body[0][1] < 250:
+            return True
+        if 600 <= body[0][0] < 750 and 300 <= body[0][1] < 350:
+            return True
+        if 650 <= body[0][0] < 850 and 350 <= body[0][1] < 400:
+            return True
+        if 100 <= body[0][0] < 450 and 500 <= body[0][1] < 550:
+            return True
+        if 350 <= body[0][0] < 450 and 550 <= body[0][1] < 600:
+            return True
+        if 400 <= body[0][0] < 450 and 600 <= body[0][1] < 650:
+            return True
+        if 650 <= body[0][0] < 750 and 650 <= body[0][1] < 700:
+            return True
+        if 600 <= body[0][0] < 750 and 700 <= body[0][1] < 750:
+            return True
+        if 700 <= body[0][0] < 750 and 750 <= body[0][1] < 850:
+            return True
+
+    def isactive(self):
+        return self.flag
+
+    def render(self):
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(100, 100, 150, 150))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(250, 200, 150, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(600, 300, 150, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(650, 350, 200, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(100, 500, 350, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(350, 550, 100, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(400, 600, 50, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(650, 650, 100, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(600, 700, 150, 50))
+        pygame.draw.rect(game_window, purple,
+                         pygame.Rect(700, 750, 50, 100))
+        self.Flag = True
+
+
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
     if not os.path.isfile(fullname):
@@ -152,6 +208,7 @@ if __name__ == '__main__':
     snake = Snake()
     fruit = Fruit(True)
     level2 = Level2()
+    level3 = Level3()
     all_sprites = pygame.sprite.Group()
     cur = pygame.sprite.Sprite(all_sprites)
     cur.image = load_image("background_image.png")
@@ -187,16 +244,25 @@ if __name__ == '__main__':
         else:
             snake.body().pop()
         if not fruit.isspawn():
-            fruit.setpos(random.randrange(100, window_x - 100, 50),
-                          random.randrange(100, window_y - 100, 50))
+            if level3.isactive():
+                x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
+                while level3.checkcol([[x, y]]):
+                    x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
+                fruit.setpos(x, y)
+            else:
+                fruit.setpos(random.randrange(100, window_x - 100, 50),
+                         random.randrange(100, window_y - 100, 50))
+
         fruit.spawn(True)
         game_window.fill((168, 255, 136))
         all_sprites.draw(game_window)
         fruit.render()
-        if score == 10:
+        if 5 <= score < 25:
+            level3.render()
+            if level3.checkcol(snake.body()):
+                game_over()
+        elif 2 <= score < 5:
             level2.render()
-            snake.setpos(100, 100)
-            direction = 'RIGHT'
             if level2.checkcol(snake.body()):
                 game_over()
         snake.render(direction)
