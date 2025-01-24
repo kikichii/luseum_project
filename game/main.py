@@ -83,7 +83,7 @@ class Fruit:
 
 # Функция для загрузки изображений
 def load_image(name, colorkey=None):
-    fullname = os.path.join('data', name)  # Полный путь к изображению
+    fullname = os.path.join('../data', name)  # Полный путь к изображению
     if not os.path.isfile(fullname):  # Проверяем, существует ли файл
         print(f"Файл с изображением '{fullname}' не найден")  # Если файл не найден, выводим сообщение
         sys.exit()  # Завершаем программу
