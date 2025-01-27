@@ -5,6 +5,7 @@ import os  # Импортируем библиотеку os для работы 
 import sys  # Импортируем библиотеку sys для доступа к параметрам и функциям Python
 import level2  # Импортируем второй уровень
 import level3  # Импортируем третий уровень
+import level4  # Импортируем четвертый уровень
 
 
 # Класс для управления змеёй
@@ -138,6 +139,7 @@ if __name__ == '__main__':
     fruit = Fruit(True)  # Создаем объект фрукта
     level2 = level2.Level2(GAME_WINDOW, PURPLE)  # Создаем объект для второго уровня
     level3 = level3.Level3(GAME_WINDOW, PURPLE)  # Создаем объект для третьего уровня
+    level4 = level4.Level4(GAME_WINDOW, PURPLE)
     all_sprites = pygame.sprite.Group()  # Создаем группу для всех спрайтов
     cur = pygame.sprite.Sprite(all_sprites)  # Создаем спрайт для фона
     cur.image = load_image("background_image.png")  # Загружаем изображение фона
@@ -198,7 +200,7 @@ if __name__ == '__main__':
         all_sprites.draw(GAME_WINDOW)  # Отрисовка всех спрайтов
         fruit.render()  # Отрисовка фрукта
 
-        # Условия для уровня 2 и 3
+        # Условия для уровней
         if 5 <= score < 25:
             level3.activate()
             level3.render()  # Отрисовка уровня 3
@@ -209,7 +211,6 @@ if __name__ == '__main__':
             if level2.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
 
-        fruit.render()
         snake.render(DIRECTION)  # Отрисовка змеи
 
         # Проверка границ окна

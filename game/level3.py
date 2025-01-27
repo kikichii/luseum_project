@@ -54,7 +54,7 @@ class Level3:
         pygame.draw.rect(game_window, purple,
                          pygame.Rect(650, 350, 200, 50))  # Рисуем четвёртое препятствие
         pygame.draw.rect(game_window, purple,
-                         pygame.Rect(100, 500, 350, 50))  # Рисуем пятого препятствие
+                         pygame.Rect(100, 500, 350, 50))  # Рисуем пятое препятствие
         pygame.draw.rect(game_window, purple,
                          pygame.Rect(350, 550, 100, 50))  # Рисуем шестое препятствие
         pygame.draw.rect(game_window, purple,
@@ -64,4 +64,4 @@ class Level3:
         pygame.draw.rect(game_window, purple,
                          pygame.Rect(600, 700, 150, 50))  # Рисуем девятое препятствие
         pygame.draw.rect(game_window, purple,
-                         pygame.Rect(700, 750, 50, 100))  # Рисуем десятую препятствие
+                         pygame.Rect(700, 750, 50, 100))  # Рисуем десятое препятствие
