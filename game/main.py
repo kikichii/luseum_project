@@ -200,6 +200,7 @@ if __name__ == '__main__':
 
         # Условия для уровня 2 и 3
         if 5 <= score < 25:
+            level3.activate()
             level3.render()  # Отрисовка уровня 3
             if level3.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
@@ -208,6 +209,7 @@ if __name__ == '__main__':
             if level2.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
 
+        fruit.render()
         snake.render(DIRECTION)  # Отрисовка змеи
 
         # Проверка границ окна

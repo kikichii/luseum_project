@@ -31,6 +31,12 @@ class Level3:
         if 700 <= body[0][0] < 750 and 750 <= body[0][1] < 850:
             return True
 
+    def activate(self):
+        self.flag = True  # Устанавливаем флаг активности уровня
+
+    def deactivate(self):
+        self.flag = True  # Устанавливаем флаг активности уровня
+
     # Метод для проверки активности уровня
     def isactive(self):
         return self.flag
@@ -59,4 +65,3 @@ class Level3:
                          pygame.Rect(600, 700, 150, 50))  # Рисуем девятое препятствие
         pygame.draw.rect(game_window, purple,
                          pygame.Rect(700, 750, 50, 100))  # Рисуем десятую препятствие
-        self.Flag = True  # Устанавливаем флаг активности уровня
