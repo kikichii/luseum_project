@@ -9,7 +9,7 @@ class Level2:
     # Метод для проверки столкновений тела змеи с преградами
     def checkcol(self, body):
         if 100 <= body[0][0] < 550 and \
-                (body[0][1] == 100 and body[1][1] == 150 or body[0][1] == 150 and body[1][1] == 100):
+                (body[0][1] == 200 and body[1][1] == 150 or body[0][1] == 150 and body[1][1] == 200):
             return True
         if (body[0][0] == 600 and body[1][0] == 650 or body[0][0] == 650 and body[1][0] == 600) and \
                 100 <= body[0][1] < 250:
@@ -29,7 +29,7 @@ class Level2:
         game_window = self.GAME_WINDOW
         purple = self.PURPLE
         pygame.draw.rect(game_window, purple,
-                         pygame.Rect(100, 145, 455, 10))  # Рисуем первое препятствие
+                         pygame.Rect(100, 195, 455, 10))  # Рисуем первое препятствие
         pygame.draw.rect(game_window, purple,
                          pygame.Rect(645, 100, 10, 155))  # Рисуем второе препятствие
         pygame.draw.rect(game_window, purple,
