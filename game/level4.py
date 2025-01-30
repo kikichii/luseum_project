@@ -10,25 +10,39 @@ class Level4:
 
     # Метод для проверки столкновений тела змеи с преградами уровня 3
     def checkcol(self, body):
-        if 100 <= body[0][0] < 250 and 100 <= body[0][1] < 250:
+        if 100 <= body[0][0] < 250 and 200 <= body[0][1] < 250:
             return True
-        if 250 <= body[0][0] < 400 and 200 <= body[0][1] < 250:
+        if 200 <= body[0][0] < 250 and 250 <= body[0][1] < 300:
             return True
-        if 600 <= body[0][0] < 750 and 300 <= body[0][1] < 350:
+        if 200 <= body[0][0] < 300 and 300 <= body[0][1] < 350:
             return True
-        if 650 <= body[0][0] < 850 and 350 <= body[0][1] < 400:
+        if 400 <= body[0][0] < 450 and 100 <= body[0][1] < 400:
             return True
-        if 100 <= body[0][0] < 450 and 500 <= body[0][1] < 550:
+        if 400 <= body[0][0] < 550 and 350 <= body[0][1] < 400:
             return True
-        if 350 <= body[0][0] < 450 and 550 <= body[0][1] < 600:
+        if 500 <= body[0][0] < 550 and 400 <= body[0][1] < 450:
             return True
-        if 400 <= body[0][0] < 450 and 600 <= body[0][1] < 650:
+        if 500 <= body[0][0] < 700 and 450 <= body[0][1] < 500:
             return True
-        if 650 <= body[0][0] < 750 and 650 <= body[0][1] < 700:
+        if 650 <= body[0][0] < 700 and 250 <= body[0][1] < 500:
             return True
-        if 600 <= body[0][0] < 750 and 700 <= body[0][1] < 750:
+        if 700 <= body[0][0] < 750 and 250 <= body[0][1] < 300:
             return True
-        if 700 <= body[0][0] < 750 and 750 <= body[0][1] < 850:
+        if 300 <= body[0][0] < 400 and 500 <= body[0][1] < 550:
+            return True
+        if 100 <= body[0][0] < 350 and 550 <= body[0][1] < 600:
+            return True
+        if 300 <= body[0][0] < 350 and 600 <= body[0][1] < 650:
+            return True
+        if 300 <= body[0][0] < 450 and 650 <= body[0][1] < 700:
+            return True
+        if 400 <= body[0][0] < 450 and 700 <= body[0][1] < 750:
+            return True
+        if 600 <= body[0][0] < 650 and 600 <= body[0][1] < 650:
+            return True
+        if 600 <= body[0][0] < 750 and 650 <= body[0][1] < 700:
+            return True
+        if 700 <= body[0][0] < 750 and 700 <= body[0][1] < 850:
             return True
 
     def activate(self):
