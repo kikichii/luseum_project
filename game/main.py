@@ -190,16 +190,16 @@ if __name__ == '__main__':
                 while level3.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
-            else:
-                # Генерация погодности для 2 уровня
-                fruit.setpos(random.randrange(100, window_x - 100, 50),
-                             random.randrange(100, window_y - 100, 50))
             if level4.isactive():
                 x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 while level4.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
-
+            else:
+                # Генерация погодности для 2 уровня
+                fruit.setpos(random.randrange(100, window_x - 100, 50),
+                             random.randrange(100, window_y - 100, 50))
+            
         fruit.spawn(True)  # Активируем спавн фрукта
         GAME_WINDOW.fill((168, 255, 136))  # Заполняем игровой экран цветом
         all_sprites.draw(GAME_WINDOW)  # Отрисовка всех спрайтов
