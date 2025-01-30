@@ -35,7 +35,7 @@ class Level3:
         self.flag = True  # Устанавливаем флаг активности уровня
 
     def deactivate(self):
-        self.flag = True  # Устанавливаем флаг активности уровня
+        self.flag = False  # Устанавливаем флаг активности уровня
 
     # Метод для проверки активности уровня
     def isactive(self):
