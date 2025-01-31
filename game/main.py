@@ -106,6 +106,7 @@ def show_score(choice, color, font, size):
 
 # Функция, срабатывающая при окончании игры
 def game_over():
+    failimg = load_image("fail.png")  # Загрузка изображения экрана проигрыша
     # Создаем объект шрифта для отображения текста "Game Over"
     my_font = pygame.font.SysFont('Corbel', 50)
     # Создаем поверхность для отображения текста счёта
@@ -116,6 +117,7 @@ def game_over():
     # Устанавливаем позицию текста на экране
     game_over_rect.midtop = (window_x / 2, window_y / 4)
     # Отрисовка текста на экране
+    GAME_WINDOW.blit(failimg, (0, 0))  # Отрисовка экрана проигрыша
     GAME_WINDOW.blit(game_over_surface, game_over_rect)
     pygame.display.flip()  # Обновляем экран
     time.sleep(2)  # Задержка перед выходом
