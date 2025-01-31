@@ -208,7 +208,12 @@ if __name__ == '__main__':
         fruit.render()  # Отрисовка фрукта
 
         # Условия для уровней
-        if 5 <= score < 25:
+        if 10 <= score < 15:
+            level4.activate()
+            level4.render()  # Отрисовка уровня 3
+            if level4.checkcol(snake.body()):  # Проверка на столкновение
+                game_over()  # Вызвать функцию game_over
+        if 5 <= score < 10:
             level3.activate()
             level3.render()  # Отрисовка уровня 3
             if level3.checkcol(snake.body()):  # Проверка на столкновение
@@ -230,6 +235,14 @@ if __name__ == '__main__':
         for block in snake.body()[1:]:
             if snake.pos()[0] == block[0] and snake.pos()[1] == block[1]:
                 game_over()  # Вызвать функцию game_over
+
+        my_font = pygame.font.SysFont('Corbel', 50)
+        # Создаем поверхность для отображения текста счёта
+        game_over_surface = my_font.render(
+            'Apples:' + str(score), True, WHITE)
+        # Создаем прямоугольный объект для текста
+        game_over_rect = game_over_surface.get_rect()
+        GAME_WINDOW.blit(game_over_surface, (10, 50))
 
         pygame.display.update()  # Обновляем экран
         fps.tick(5)  # Ограничиваем количество кадров в секунду
