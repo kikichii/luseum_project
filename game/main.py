@@ -107,15 +107,15 @@ def show_score(choice, color, font, size):
 # Функция, срабатывающая при окончании игры
 def game_over():
     failimg = load_image("fail.png")  # Загрузка изображения экрана проигрыша
-    # Создаем объект шрифта для отображения текста "Game Over"
-    my_font = pygame.font.SysFont('Corbel', 50)
+    # Создаем объект шрифта для отображения текста
+    my_font = pygame.font.SysFont('Corbel', 50, True)
     # Создаем поверхность для отображения текста счёта
     game_over_surface = my_font.render(
-        'Apples:' + str(score), True, WHITE)
+        'Яблоки:' + str(score), True, WHITE)
     # Создаем прямоугольный объект для текста
     game_over_rect = game_over_surface.get_rect()
     # Устанавливаем позицию текста на экране
-    game_over_rect.midtop = (window_x / 2, window_y / 4)
+    game_over_rect.midtop = (window_x / 2, window_y / 10)
     # Отрисовка текста на экране
     GAME_WINDOW.blit(failimg, (0, 0))  # Отрисовка экрана проигрыша
     GAME_WINDOW.blit(game_over_surface, game_over_rect)
@@ -236,10 +236,10 @@ if __name__ == '__main__':
             if snake.pos()[0] == block[0] and snake.pos()[1] == block[1]:
                 game_over()  # Вызвать функцию game_over
 
-        my_font = pygame.font.SysFont('Corbel', 50)
+        my_font = pygame.font.SysFont('Corbel', 50, True)
         # Создаем поверхность для отображения текста счёта
         game_over_surface = my_font.render(
-            'Apples:' + str(score), True, WHITE)
+            'Яблоки:' + str(score), True, WHITE)
         # Создаем прямоугольный объект для текста
         game_over_rect = game_over_surface.get_rect()
         GAME_WINDOW.blit(game_over_surface, (10, 50))
