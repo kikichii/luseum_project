@@ -142,6 +142,7 @@ if __name__ == '__main__':
     level2 = level2.Level2(GAME_WINDOW, PURPLE)  # Создаем объект для второго уровня
     level3 = level3.Level3(GAME_WINDOW, PURPLE)  # Создаем объект для третьего уровня
     level4 = level4.Level4(GAME_WINDOW, PURPLE)
+    level5 = level5.Level5(GAME_WINDOW, PURPLE)
     all_sprites = pygame.sprite.Group()  # Создаем группу для всех спрайтов
     cur = pygame.sprite.Sprite(all_sprites)  # Создаем спрайт для фона
     cur.image = load_image("background_image.png")  # Загружаем изображение фона
@@ -219,8 +220,8 @@ if __name__ == '__main__':
             if level3.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
         elif 2 <= score < 5:
-            level2.render()  # Отрисовка уровня 2
-            if level2.checkcol(snake.body()):  # Проверка на столкновение
+            level5.render()  # Отрисовка уровня 2
+            if level5.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
 
         snake.render(DIRECTION)  # Отрисовка змеи
