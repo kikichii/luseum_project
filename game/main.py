@@ -198,6 +198,11 @@ if __name__ == '__main__':
                 while level4.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
+            if level5.isactive():
+                x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
+                while level5.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
+                    x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
+                fruit.setpos(x, y)  # Устанавливаем позицию фрукта
             else:
                 # Генерация погодности для 2 уровня
                 fruit.setpos(random.randrange(100, window_x - 100, 50),
@@ -209,19 +214,24 @@ if __name__ == '__main__':
         fruit.render()  # Отрисовка фрукта
 
         # Условия для уровней
-        if 10 <= score < 15:
+        if 15 <= score < 20:
+            level5.activate()
+            level5.render()  # Отрисовка уровня 3
+            if level5.checkcol(snake.body()):  # Проверка на столкновение
+                game_over()  # Вызвать функцию game_over
+        elif 10 <= score < 15:
             level4.activate()
             level4.render()  # Отрисовка уровня 3
             if level4.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
-        if 5 <= score < 10:
+        elif 5 <= score < 10:
             level3.activate()
             level3.render()  # Отрисовка уровня 3
             if level3.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
         elif 2 <= score < 5:
-            level5.render()  # Отрисовка уровня 2
-            if level5.checkcol(snake.body()):  # Проверка на столкновение
+            level2.render()  # Отрисовка уровня 2
+            if level2.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
 
         snake.render(DIRECTION)  # Отрисовка змеи
