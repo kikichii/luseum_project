@@ -204,7 +204,6 @@ if __name__ == '__main__':
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
             else:
-                # Генерация погодности для 2 уровня
                 fruit.setpos(random.randrange(100, window_x - 100, 50),
                              random.randrange(100, window_y - 100, 50))
             
@@ -216,21 +215,21 @@ if __name__ == '__main__':
         # Условия для уровней
         if 15 <= score < 20:
             level5.activate()
-            level5.render()  # Отрисовка уровня 3
+            level5.render()  # Отрисовка уровня
             if level5.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
         elif 10 <= score < 15:
             level4.activate()
-            level4.render()  # Отрисовка уровня 3
+            level4.render()  # Отрисовка уровня
             if level4.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
         elif 5 <= score < 10:
             level3.activate()
-            level3.render()  # Отрисовка уровня 3
+            level3.render()  # Отрисовка уровня
             if level3.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
         elif 2 <= score < 5:
-            level2.render()  # Отрисовка уровня 2
+            level2.render()  # Отрисовка уровня
             if level2.checkcol(snake.body()):  # Проверка на столкновение
                 game_over()  # Вызвать функцию game_over
 
