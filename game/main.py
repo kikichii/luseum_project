@@ -6,7 +6,7 @@ import sys  # Импортируем библиотеку sys для досту�
 import level2  # Импортируем второй уровень
 import level3  # Импортируем третий уровень
 import level4  # Импортируем четвертый уровень
-
+import level5
 
 # Класс для управления змеёй
 class Snake:

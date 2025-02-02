@@ -2,7 +2,7 @@ import pygame  # Импортируем библиотеку Pygame для ра�
 # from main import GAME_WINDOW, PURPLE  # Импортируем окно и цвет
 
 
-class Level4:
+class Level5:
     def __init__(self, game_window, purple):
         self.flag = False  # Флаг активности уровня
         self.game_window = game_window  # передаем это значение
