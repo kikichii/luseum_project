@@ -6,17 +6,17 @@ import sys  # Импортируем библиотеку sys для досту�
 import level2  # Импортируем второй уровень
 import level3  # Импортируем третий уровень
 import level4  # Импортируем четвертый уровень
-import level5
+import level5  # Импортируем пятый уровень
+import level6  # Импортируем шестой уровень
 
 # Класс для управления змеёй
 class Snake:
-    def __init__(self):
-        # Инициализация позиции змеи и её тела
+    def __init__(self):  # Инициализация позиции змеи и её тела
         self.snake_pos = [250, 100]  # Начальная позиция головы змеи
         self.snake_body = [[250, 100],  # Тело змеи как список координат
-                           [200, 100],
-                           [150, 100],
-                           [100, 100]]
+                            [200, 100],
+                            [150, 100],
+                            [100, 100]]
 
     # Метод для установки позиции змеи
     def setpos(self, x, y):
@@ -143,6 +143,7 @@ if __name__ == '__main__':
     level3 = level3.Level3(GAME_WINDOW, PURPLE)  # Создаем объект для третьего уровня
     level4 = level4.Level4(GAME_WINDOW, PURPLE)
     level5 = level5.Level5(GAME_WINDOW, PURPLE)
+    level6 = level6.Level6(GAME_WINDOW, PURPLE)
     all_sprites = pygame.sprite.Group()  # Создаем группу для всех спрайтов
     cur = pygame.sprite.Sprite(all_sprites)  # Создаем спрайт для фона
     cur.image = load_image("background_image.png")  # Загружаем изображение фона
@@ -187,33 +188,38 @@ if __name__ == '__main__':
 
         # Проверяем, нужен ли новый фрукт
         if not fruit.isspawn():
-            # Если активен третий уровень, генерируем фрукт с учётом препятствий
+            # Если активны уровни, генерируем фрукт с учётом препятствий
             if level3.isactive():
                 x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
-                while level3.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
+                while level3.checkcol([[x, y]]) and level4.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
             if level4.isactive():
                 x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
-                while level4.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
+                while level4.checkcol([[x, y]]) and level5.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
             if level5.isactive():
                 x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
-                while level5.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
+                while level5.checkcol([[x, y]]) and level6.checkcol([[x, y]]):  # Проверяем, не попадает ли фрукт в препятствие
                     x, y = random.randrange(100, window_x - 100, 50), random.randrange(100, window_y - 100, 50)
                 fruit.setpos(x, y)  # Устанавливаем позицию фрукта
             else:
                 fruit.setpos(random.randrange(100, window_x - 100, 50),
                              random.randrange(100, window_y - 100, 50))
-            
+
         fruit.spawn(True)  # Активируем спавн фрукта
         GAME_WINDOW.fill((168, 255, 136))  # Заполняем игровой экран цветом
         all_sprites.draw(GAME_WINDOW)  # Отрисовка всех спрайтов
         fruit.render()  # Отрисовка фрукта
 
         # Условия для уровней
-        if 15 <= score < 20:
+        if 20 <= score:  # активируем уровень 6 при счёте 20
+            level6.activate()
+            level6.render()  # Отрисовка уровня
+            if level6.checkcol(snake.body()):  # Проверка на столкновение
+                game_over()  # Вызвать функцию game_over
+        elif 15 <= score < 20:
             level5.activate()
             level5.render()  # Отрисовка уровня
             if level5.checkcol(snake.body()):  # Проверка на столкновение

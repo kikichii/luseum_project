@@ -5,6 +5,7 @@ import pygame  # Импортируем библиотеку Pygame для ра�
 class Level2:
     def __init__(self, game_window, purple):
         self.GAME_WINDOW = game_window  # передаем это значение
+        self.flag = False  # Флаг активности уровня
         self.PURPLE = purple  # цвет тоже
     # Метод для проверки столкновений тела змеи с преградами
     def checkcol(self, body):
@@ -23,6 +24,16 @@ class Level2:
         if (body[0][0] == 650 and body[1][0] == 700 or body[0][0] == 700 and body[1][0] == 650) and \
                 500 < body[0][1] <= 850:
             return True
+
+    def activate(self):
+        self.flag = True  # Устанавливаем флаг активности уровня
+
+    def deactivate(self):
+        self.flag = False  # Устанавливаем флаг активности уровня
+
+    # Метод для проверки активности уровня
+    def isactive(self):
+        return self.flag
 
     # Метод для отрисовки препятствий уровня 2
     def render(self):
