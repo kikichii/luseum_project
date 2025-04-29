@@ -1,0 +1,34 @@
+import csv
+import json
+import argparse
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--param', type=str, help='Параметр')
+parser.add_argument('--smallest', default=0, type=int)
+args = parser.parse_args()
+maindict = {}
+with open('ships.csv', 'r', encoding="utf8") as csvfile:
+    reader1 = csv.reader(csvfile, delimiter=';', quotechar='"')
+    for i, j in enumerate(reader1):
+        maindict[str(i)] = j
+    param = maindict['0'].index(args.param)
+    print(param)
+    print(args.smallest)
+    sortlst = []
+    for n, li in maindict.items():
+        sortlst.append([n, li[param]])
+    sortlst = sortlst[1:]
+    reslist = []
+    for i in filter(lambda x: int(x[1]) >= args.smallest, sortlst):
+        resdict = {}
+        resdict[maindict['0'][0]] = maindict[i[0]][0]
+        resdict[maindict['0'][1]] = int(maindict[i[0]][1])
+        resdict[maindict['0'][2]] = int(maindict[i[0]][2])
+        resdict[maindict['0'][3]] = int(maindict[i[0]][3])
+        resdict[maindict['0'][4]] = int(maindict[i[0]][4])
+        resdict[maindict['0'][5]] = int(maindict[i[0]][5])
+        resdict[maindict['0'][6]] = int(maindict[i[0]][6])
+        reslist.append(resdict)
+    with open('toys.json', 'w', encoding='utf-8') as f:
+        json.dump(reslist, f, ensure_ascii=False, indent=4)
